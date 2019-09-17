@@ -14,14 +14,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/snapshot', express.static(path.join(__dirname, '../uploads')));
 
 const LIMIT = 30;
+const GIT_KEEP_FILE = '.gitkeep';
 
 app.post('/snapshot', uploadMiddleware.single('file'), (req, res) => {
+  const reqFileName = req.file.filename;
   const uploadsPath = path.join(__dirname, '../uploads');
 
   fs.readdir(uploadsPath, (err, files) => {
     if (files.length >= LIMIT) {
       files.forEach(file => {
-        if (req.file.filename === file) return;
+        if (file === reqFileName || file === GIT_KEEP_FILE) return;
 
         fs.unlink(`${uploadsPath}/${file}`, error => {
           if (error) throw err;

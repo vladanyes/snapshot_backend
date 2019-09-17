@@ -12,7 +12,12 @@
 
 # production
 /build
-/uploads
+
+# ignore files in folder
+uploads/*
+
+# but keep the folder
+!uploads/.gitkeep
 
 # misc
 .DS_Store
