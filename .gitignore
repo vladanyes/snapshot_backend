@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-/.idea
+.DS_Store
+/.idea/
 
 # testing
 /coverage
