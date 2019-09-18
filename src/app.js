@@ -11,7 +11,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/snapshot', express.static(path.join(__dirname, '../uploads')));
 
 const LIMIT = 30;
 const GIT_KEEP_FILE = '.gitkeep';
@@ -33,7 +32,7 @@ app.post('/snapshot', uploadMiddleware.single('file'), (req, res) => {
   });
 
   res.status(200).send({
-    url: `${uploadsPath}/${reqFileName}`,
+    url: `https://snapshot--backend.herokuapp.com/uploads/${reqFileName}`,
     name: reqFileName,
   });
 });
