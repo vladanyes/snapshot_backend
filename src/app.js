@@ -33,7 +33,8 @@ app.post('/snapshot', uploadMiddleware.single('file'), (req, res) => {
   });
 
   res.status(200).send({
-    id: req.file.filename,
+    url: `${uploadsPath}/${reqFileName}`,
+    name: reqFileName,
   });
 });
 
